@@ -1,9 +1,10 @@
 <template>
-    <p>Carousel</p>
+    <p>Home</p>
 </template>
+
 
 <script>
     export default {
-        name: 'AppCarousel'
+        name: 'AppHome'
     }
 </script>

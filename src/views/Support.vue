@@ -1,9 +1,9 @@
 <template>
-    <p>Carousel</p>
+    <p>Support</p>
 </template>
 
 <script>
     export default {
-        name: 'AppCarousel'
+        name: 'AppSupport'
     }
 </script>
