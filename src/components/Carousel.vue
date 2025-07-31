@@ -1,9 +1,0 @@
-<template>
-    <p>Carousel</p>
-</template>
-
-<script>
-    export default {
-        name: 'AppCarousel'
-    }
-</script>
