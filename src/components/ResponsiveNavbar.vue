@@ -9,9 +9,9 @@
 
         <!-- Desktop Menu -->
         <div class="hidden md:flex items-center space-x-8">
-          <a href="#" class="text-gray-900 hover:text-[#0033ea] px-3 py-2 text-sm font-medium">Home</a>
-          <a href="#" class="text-gray-900 hover:text-[#0033ea] px-3 py-2 text-sm font-medium">About</a>
-          <a href="#" class="text-gray-900 hover:text-[#0033ea] px-3 py-2 text-sm font-medium">Blog</a>
+          <a href="/" class="text-gray-900 hover:text-[#0033ea] px-3 py-2 text-sm font-medium">Home</a>
+          <a href="/about" class="text-gray-900 hover:text-[#0033ea] px-3 py-2 text-sm font-medium">About</a>
+          <a href="/blog" class="text-gray-900 hover:text-[#0033ea] px-3 py-2 text-sm font-medium">Blog</a>
 
           <!-- Services Dropdown -->
           <custom-dropdown label="Services" additional-classes="w-48">
@@ -103,17 +103,17 @@
       <div v-show="isMobileMenuOpen" class="md:hidden">
         <div class="pt-2 pb-3 space-y-1 px-2">
           <a
-            href="#"
+            href="/"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-[#0033ea] hover:bg-gray-50"
             >Home</a
           >
           <a
-            href="#"
+            href="/about"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-[#0033ea] hover:bg-gray-50"
             >About</a
           >
           <a
-            href="#"
+            href="/blog"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-[#0033ea] hover:bg-gray-50"
             >Blog</a
           >
@@ -237,15 +237,21 @@ export default {
       this.mobileDropdownOpen = this.mobileDropdownOpen === dropdown ? null : dropdown
     },
     login() {
-      console.log('Login clicked')
-      this.isMobileMenuOpen = false
-      // Add your login logic here
+      console.log('Navigating to login page...');
+      this.isMobileMenuOpen = false;
+      
+      this.$router.push('/login'); 
+
     },
+    
     signup() {
-      console.log('Sign Up clicked')
-      this.isMobileMenuOpen = false
-      // Add your signup logic here
+      console.log('Navigating to signup page...');
+      this.isMobileMenuOpen = false;
+
+      this.$router.push('/signup');
+
     }
+
   }
 }
 </script>
