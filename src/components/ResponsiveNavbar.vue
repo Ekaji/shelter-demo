@@ -138,17 +138,17 @@
               <a
                 href="#"
                 class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-[#0033ea] hover:bg-gray-50"
-                >Web Development</a
+                >Apps</a
               >
               <a
                 href="#"
                 class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-[#0033ea] hover:bg-gray-50"
-                >Mobile Apps</a
+                Safe</a
               >
               <a
                 href="#"
                 class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-[#0033ea] hover:bg-gray-50"
-                >Consulting</a
+                Rent</a
               >
             </div>
           </div>
@@ -180,11 +180,6 @@
                 href="#"
                 class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-[#0033ea] hover:bg-gray-50"
                 >Contact Us</a
-              >
-              <a
-                href="#"
-                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-[#0033ea] hover:bg-gray-50"
-                >Documentation</a
               >
             </div>
           </div>
