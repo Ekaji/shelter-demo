@@ -142,12 +142,12 @@
               >
               <a
                 href="#"
-                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-[#0033ea] hover:bg-gray-50"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-[#0033ea] hover:bg-gray-50">
                 Safe</a
               >
               <a
                 href="#"
-                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-[#0033ea] hover:bg-gray-50"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-[#0033ea] hover:bg-gray-50">
                 Rent</a
               >
             </div>
