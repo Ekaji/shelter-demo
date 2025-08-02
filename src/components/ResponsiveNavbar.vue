@@ -29,9 +29,9 @@
                 </svg>
               </button>
             </template>
-            <dropdown-item>Web Development</dropdown-item>
-            <dropdown-item>Mobile Apps</dropdown-item>
-            <dropdown-item>Consulting</dropdown-item>
+            <dropdown-item>Buy</dropdown-item>
+            <dropdown-item>Safe</dropdown-item>
+            <dropdown-item>Rent</dropdown-item>
           </custom-dropdown>
 
           <!-- Support Dropdown -->
@@ -52,7 +52,6 @@
             </template>
             <dropdown-item>FAQ</dropdown-item>
             <dropdown-item>Contact Us</dropdown-item>
-            <dropdown-item>Documentation</dropdown-item>
           </custom-dropdown>
 
           <div class="flex items-center space-x-4 ml-4">
