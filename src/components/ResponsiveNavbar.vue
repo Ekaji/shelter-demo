@@ -4,7 +4,7 @@
       <div class="flex justify-between h-16">
         <!-- Logo -->
         <div class="flex items-center">
-          <a href="#" class="text-xl font-bold text-gray-900">YourLogo</a>
+          <a href="#" class="text-xl font-bold text-gray-900">Shelter</a>
         </div>
 
         <!-- Desktop Menu -->
