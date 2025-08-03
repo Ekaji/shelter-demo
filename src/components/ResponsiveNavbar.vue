@@ -4,7 +4,7 @@
       <div class="flex justify-between h-16">
         <!-- Logo -->
         <div class="flex items-center">
-          <a href="#" class="text-xl font-bold text-gray-900">YourLogo</a>
+          <a href="#" class="text-xl font-bold text-gray-900">Shelter</a>
         </div>
 
         <!-- Desktop Menu -->
@@ -29,9 +29,9 @@
                 </svg>
               </button>
             </template>
-            <dropdown-item>Web Development</dropdown-item>
-            <dropdown-item>Mobile Apps</dropdown-item>
-            <dropdown-item>Consulting</dropdown-item>
+            <dropdown-item>Buy</dropdown-item>
+            <dropdown-item>Safe</dropdown-item>
+            <dropdown-item>Rent</dropdown-item>
           </custom-dropdown>
 
           <!-- Support Dropdown -->
@@ -52,7 +52,6 @@
             </template>
             <dropdown-item>FAQ</dropdown-item>
             <dropdown-item>Contact Us</dropdown-item>
-            <dropdown-item>Documentation</dropdown-item>
           </custom-dropdown>
 
           <div class="flex items-center space-x-4 ml-4">
@@ -139,17 +138,17 @@
               <a
                 href="#"
                 class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-[#0033ea] hover:bg-gray-50"
-                >Web Development</a
+                >Apps</a
               >
               <a
                 href="#"
-                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-[#0033ea] hover:bg-gray-50"
-                >Mobile Apps</a
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-[#0033ea] hover:bg-gray-50">
+                Safe</a
               >
               <a
                 href="#"
-                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-[#0033ea] hover:bg-gray-50"
-                >Consulting</a
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-[#0033ea] hover:bg-gray-50">
+                Rent</a
               >
             </div>
           </div>
@@ -181,11 +180,6 @@
                 href="#"
                 class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-[#0033ea] hover:bg-gray-50"
                 >Contact Us</a
-              >
-              <a
-                href="#"
-                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-[#0033ea] hover:bg-gray-50"
-                >Documentation</a
               >
             </div>
           </div>
