@@ -5,8 +5,7 @@ class ApiService {
   constructor() {
     this.baseURL = API_CONFIG.BASE_URL
   }
-
-  // Helper method to make API requests
+  
   async makeRequest(endpoint, options = {}) {
     const url = `${this.baseURL}${endpoint}`
     
@@ -35,7 +34,6 @@ class ApiService {
       
       const result = await response.text()
       
-      // Try to parse as JSON, fallback to text
       try {
         return JSON.parse(result)
       } catch {
@@ -53,11 +51,9 @@ class ApiService {
     let firstname, lastname
     
     if (userData.userType === 'renter') {
-      // Renters have separate firstName and lastName
       firstname = userData.userDetails.firstName || ''
       lastname = userData.userDetails.lastName || ''
     } else {
-      // Landlords and agents have fullName that needs to be split
       const fullName = userData.userDetails.fullName || ''
       const nameParts = fullName.trim().split(' ')
       firstname = nameParts[0] || ''
@@ -90,7 +86,6 @@ class ApiService {
     })
   }
 
-  // Map user types to account types expected by your API
   mapUserTypeToAccountType(userType) {
     const mapping = {
       'renter': 'individual',
@@ -100,7 +95,6 @@ class ApiService {
     return mapping[userType] || 'individual'
   }
 
-  // Get user profile (if your API supports it)
   async getUserProfile(token) {
     return this.makeRequest('/profile', {
       method: 'GET',
