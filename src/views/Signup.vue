@@ -85,11 +85,6 @@
               <input id="landlordPhone" v-model="userDetails.phone" type="tel" required
                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
-            <div class="mt-4">
-              <label for="propertiesOwned" class="block text-sm font-medium text-gray-700">Number of Properties Owned</label>
-              <input id="propertiesOwned" v-model="userDetails.propertiesOwned" type="number" min="0"
-                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            </div>
           </div>
 
           <div v-if="userType === 'agent'">
@@ -101,16 +96,6 @@
             <div class="mt-4">
               <label for="agentPhone" class="block text-sm font-medium text-gray-700">Phone Number</label>
               <input id="agentPhone" v-model="userDetails.phone" type="tel" required
-                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            </div>
-            <div class="mt-4">
-              <label for="licenseNumber" class="block text-sm font-medium text-gray-700">License Number</label>
-              <input id="licenseNumber" v-model="userDetails.licenseNumber" type="text" required
-                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            </div>
-            <div class="mt-4">
-              <label for="agency" class="block text-sm font-medium text-gray-700">Agency (if any)</label>
-              <input id="agency" v-model="userDetails.agency" type="text"
                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
           </div>
@@ -162,10 +147,7 @@ export default {
         firstName: '',
         lastName: '',
         phone: '',
-        fullName: '',
-        propertiesOwned: 0,
-        licenseNumber: '',
-        agency: ''
+        fullName: ''
       }
     }
   },
@@ -217,15 +199,12 @@ export default {
         case 'landlord':
           return {
             fullName: this.userDetails.fullName,
-            phone: this.userDetails.phone,
-            propertiesOwned: this.userDetails.propertiesOwned || 0
+            phone: this.userDetails.phone
           }
         case 'agent':
           return {
             fullName: this.userDetails.fullName,
-            phone: this.userDetails.phone,
-            licenseNumber: this.userDetails.licenseNumber,
-            agency: this.userDetails.agency || ''
+            phone: this.userDetails.phone
           }
         default:
           return {}
