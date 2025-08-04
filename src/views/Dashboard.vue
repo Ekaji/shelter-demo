@@ -24,7 +24,7 @@
               My Properties
             </router-link>
             <button 
-              @click="logout" 
+              @click="handleLogout" 
               class="px-4 py-2 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               Logout
@@ -181,7 +181,7 @@ export default {
   },
   methods: {
     ...mapActions('auth', ['logout']),
-    async logout() {
+    async handleLogout() {
       try {
         await this.logout()
         this.$router.push('/login')

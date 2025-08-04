@@ -234,16 +234,30 @@ export default {
       console.log('Navigating to login page...');
       this.isMobileMenuOpen = false;
       
-      this.$router.push('/login'); 
-
+      // Check if we're not already on the login page
+      if (this.$route.path !== '/login') {
+        this.$router.push('/login').catch(err => {
+          // Ignore navigation duplicate errors
+          if (err.name !== 'NavigationDuplicated') {
+            throw err;
+          }
+        });
+      }
     },
     
     signup() {
       console.log('Navigating to signup page...');
       this.isMobileMenuOpen = false;
 
-      this.$router.push('/signup');
-
+      // Check if we're not already on the signup page
+      if (this.$route.path !== '/signup') {
+        this.$router.push('/signup').catch(err => {
+          // Ignore navigation duplicate errors
+          if (err.name !== 'NavigationDuplicated') {
+            throw err;
+          }
+        });
+      }
     }
 
   }
