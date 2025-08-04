@@ -43,6 +43,8 @@ export default {
       state.user = null;
       state.userData = null;
       state.token = null;
+      // Clear token from localStorage
+      localStorage.removeItem('auth_token');
     }
   },
   actions: {
@@ -50,11 +52,19 @@ export default {
     async initializeAuth({ commit }) {
       const token = localStorage.getItem('auth_token');
       if (token) {
-        commit('setToken', token);
-        // You might want to validate the token with your API here
-        // For now, we'll assume it's valid
-        commit('setUser', { token });
-        commit('setUserData', { userType: 'renter' }); // Default user type
+        // Try to validate the token with the API
+        try {
+          // You can add a token validation endpoint here if your API supports it
+          // For now, we'll just check if the token exists and is not expired
+          // You might want to decode the JWT token to check expiration
+          commit('setToken', token);
+          commit('setUser', { token });
+          // Don't set default user data - let the API provide it
+          commit('setUserData', null);
+        } catch (error) {
+          // If token validation fails, clear the auth state
+          commit('clearAuth');
+        }
       }
       commit('setInitialized');
     },
@@ -112,8 +122,7 @@ export default {
         });
 
         // Handle the API response
-        // You may need to adjust this based on your API's actual response format
-        if (response.success || response.token) {
+        if (response.success || response.token || response.access_token) {
           const token = response.token || response.access_token;
           const userData = {
             email,
@@ -125,8 +134,29 @@ export default {
           commit("setUser", { email, token });
           commit("setUserData", userData);
           return userData;
+        } else if (response.status === 'error' || response.error) {
+          // Check for specific error types
+          const errorMsg = response.message || response.error || response.msg || 'Login failed'
+          
+          // Check for common activation/verification errors
+          if (errorMsg.toLowerCase().includes('verify') || 
+              errorMsg.toLowerCase().includes('confirm') || 
+              errorMsg.toLowerCase().includes('activation') ||
+              errorMsg.toLowerCase().includes('email')) {
+            throw new Error('Please check your email and click the confirmation link before logging in.')
+          }
+          
+          throw new Error(errorMsg)
         } else {
-          throw new Error(response.message || 'Login failed');
+          // Check for common error patterns
+          let errorMessage = 'Login failed'
+          if (response.message) errorMessage = response.message
+          else if (response.error) errorMessage = response.error
+          else if (response.msg) errorMessage = response.msg
+          else if (typeof response === 'string') errorMessage = response
+          else if (response.status === 'error') errorMessage = response.message || 'Login failed'
+          
+          throw new Error(errorMessage);
         }
       } catch (error) {
         let errorMessage = error.message;
@@ -142,9 +172,24 @@ export default {
       }
     },
 
-    async logout({ commit }) {
-      commit("clearAuth");
-      commit("setInitialized");
+    async logout({ commit, state }) {
+      try {
+        // Optionally call logout API if token exists
+        if (state.token) {
+          try {
+            await apiService.logout(state.token);
+          } catch (error) {
+            // Don't throw error if logout API fails
+            console.log('Logout API call failed:', error);
+          }
+        }
+      } catch (error) {
+        console.log('Error during logout:', error);
+      } finally {
+        // Always clear local auth state
+        commit("clearAuth");
+        commit("setInitialized");
+      }
     }
   },
   getters: {

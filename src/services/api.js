@@ -5,7 +5,7 @@ class ApiService {
   constructor() {
     this.baseURL = API_CONFIG.BASE_URL
   }
-  
+
   async makeRequest(endpoint, options = {}) {
     const url = `${this.baseURL}${endpoint}`
     
@@ -18,7 +18,6 @@ class ApiService {
       ...options
     }
 
-    // Add timeout
     const controller = new AbortController()
     const timeoutId = setTimeout(() => controller.abort(), API_CONFIG.TIMEOUT)
     defaultOptions.signal = controller.signal
@@ -45,7 +44,6 @@ class ApiService {
     }
   }
 
-  // Register user
   async register(userData) {
     // Handle name conversion based on user type
     let firstname, lastname
@@ -101,6 +99,24 @@ class ApiService {
       headers: {
         'Authorization': `Bearer ${token}`
       }
+    })
+  }
+
+  // Logout user (if your API supports it)
+  async logout(token) {
+    return this.makeRequest('/logout', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+  }
+
+  // Check account status (if your API supports it)
+  async checkAccountStatus(email) {
+    return this.makeRequest('/check-status', {
+      method: 'POST',
+      body: JSON.stringify({ email })
     })
   }
 }
