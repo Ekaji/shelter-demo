@@ -43,6 +43,8 @@ export default {
       state.user = null;
       state.userData = null;
       state.token = null;
+      // Clear token from localStorage
+      localStorage.removeItem('auth_token');
     }
   },
   actions: {
@@ -61,7 +63,6 @@ export default {
           commit('setUserData', null);
         } catch (error) {
           // If token validation fails, clear the auth state
-          console.log('Token validation failed, clearing auth state');
           commit('clearAuth');
         }
       }
@@ -115,23 +116,12 @@ export default {
       commit("setLoading", true);
       commit("clearError");
       try {
-        console.log('Store login - attempting login with:', { email })
         const response = await apiService.login({
           email,
           password
         });
 
-        console.log('Store login - API response received:', response)
-
         // Handle the API response
-        // You may need to adjust this based on your API's actual response format
-        console.log('Store login - checking response format:', {
-          hasSuccess: !!response.success,
-          hasToken: !!response.token,
-          hasAccessToken: !!response.access_token,
-          responseKeys: Object.keys(response)
-        })
-
         if (response.success || response.token || response.access_token) {
           const token = response.token || response.access_token;
           const userData = {
@@ -140,7 +130,6 @@ export default {
             ...response.user // if your API returns user data
           };
 
-          console.log('✅ Store login - setting auth state with:', { token: !!token, userData })
           commit("setToken", token);
           commit("setUser", { email, token });
           commit("setUserData", userData);
@@ -148,7 +137,6 @@ export default {
         } else if (response.status === 'error' || response.error) {
           // Check for specific error types
           const errorMsg = response.message || response.error || response.msg || 'Login failed'
-          console.log('❌ Store login - API returned error status:', errorMsg)
           
           // Check for common activation/verification errors
           if (errorMsg.toLowerCase().includes('verify') || 
@@ -160,10 +148,6 @@ export default {
           
           throw new Error(errorMsg)
         } else {
-          console.log('❌ Store login - login failed, response:', response)
-          console.log('❌ Store login - response type:', typeof response)
-          console.log('❌ Store login - response keys:', Object.keys(response))
-          
           // Check for common error patterns
           let errorMessage = 'Login failed'
           if (response.message) errorMessage = response.message
@@ -172,7 +156,6 @@ export default {
           else if (typeof response === 'string') errorMessage = response
           else if (response.status === 'error') errorMessage = response.message || 'Login failed'
           
-          console.log('❌ Store login - final error message:', errorMessage)
           throw new Error(errorMessage);
         }
       } catch (error) {
