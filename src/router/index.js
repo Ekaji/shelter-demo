@@ -49,6 +49,15 @@ router.beforeEach(async (to, from, next) => {
 
   const isAuthenticated = store.getters['auth/isAuthenticated']
   const userType = store.getters['auth/userType']
+  const userData = store.getters['auth/userData']
+
+  // If user has token but no user data, they might have a stale token
+  if (isAuthenticated && !userData) {
+    // Clear the stale token directly without calling logout action
+    store.commit('auth/clearAuth')
+    store.commit('auth/setInitialized')
+    return next('/login')
+  }
 
   if (hideForAuth && isAuthenticated) {
     return next('/dashboard')
