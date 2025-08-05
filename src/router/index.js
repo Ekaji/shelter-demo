@@ -29,7 +29,7 @@ const router = new Router({
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: () => import('@/views/Dashboard.vue'),
+      component: () => import('@/views/dashboard/PropertyManagementDashboard.vue'),
       meta: { requiresAuth: true, allowedRoles: ['renter', 'landlord', 'agent'] }
     }
   ]
