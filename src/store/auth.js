@@ -17,6 +17,12 @@ export default {
     },
     setUserData(state, userData) {
       state.userData = userData;
+      // Store user data in localStorage for persistence
+      if (userData) {
+        localStorage.setItem('auth_userData', JSON.stringify(userData));
+      } else {
+        localStorage.removeItem('auth_userData');
+      }
     },
     setToken(state, token) {
       state.token = token;
@@ -43,14 +49,17 @@ export default {
       state.user = null;
       state.userData = null;
       state.token = null;
-      // Clear token from localStorage
+      // Clear auth data from localStorage
       localStorage.removeItem('auth_token');
+      localStorage.removeItem('auth_userData');
     }
   },
   actions: {
     // Initialize auth state from localStorage
     async initializeAuth({ commit }) {
       const token = localStorage.getItem('auth_token');
+      const userDataString = localStorage.getItem('auth_userData');
+      
       if (token) {
         // Try to validate the token with the API
         try {
@@ -59,8 +68,17 @@ export default {
           // You might want to decode the JWT token to check expiration
           commit('setToken', token);
           commit('setUser', { token });
-          // Don't set default user data - let the API provide it
-          commit('setUserData', null);
+          
+          // Restore user data from localStorage if available
+          if (userDataString) {
+            try {
+              const userData = JSON.parse(userDataString);
+              commit('setUserData', userData);
+            } catch (error) {
+              // If user data is corrupted, clear it
+              localStorage.removeItem('auth_userData');
+            }
+          }
         } catch (error) {
           // If token validation fails, clear the auth state
           commit('clearAuth');

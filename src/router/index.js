@@ -31,6 +31,16 @@ const router = new Router({
       name: 'dashboard',
       component: () => import('@/views/dashboard/PropertyManagementDashboard.vue'),
       meta: { requiresAuth: true, allowedRoles: ['renter', 'landlord', 'agent'] }
+    },
+    {
+      path: '/about',
+      name: 'AppAbout',
+      component: () => import('@/views/About.vue'),
+    },
+    {
+      path: '/blog',
+      name: 'blog',
+      component: () => import('@/views/Blog.vue'),
     }
   ]
 })
